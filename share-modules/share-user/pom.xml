@@ -117,6 +117,15 @@
             <groupId>com.share</groupId>
             <artifactId>share-api-user</artifactId>
         </dependency>
+            <!-- 其它依赖 ... -->
+
+            <!-- Spring Boot Test -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+            </dependency>
+
     </dependencies>
 
     <build>

@@ -28,7 +28,9 @@ WORKDIR /app
 COPY --from=build /build/app.jar /app/app.jar
 
 # 容器内 Java 运行参数（可按需覆盖）
-ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/./urandom"
+ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/./urandom \
+	-Dspring.cloud.nacos.config.enabled=false \
+	-Dspring.cloud.nacos.discovery.enabled=false"
 
 # 暴露与 SpringBoot server.port 一致的端口（如未改动，默认 8080）
 EXPOSE 8080

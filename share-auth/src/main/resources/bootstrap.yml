@@ -1,0 +1,51 @@
+# Tomcat
+server:
+  port: 9200
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: share-auth
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 192.168.1.11:8848
+        namespace: e955e195-5d7d-4769-a5db-2e609554c933
+        # 强制将注册名固定为当前服务，避免被共享配置覆盖
+        service: share-auth
+      config:
+        # 配置中心地址
+        server-addr: 192.168.1.11:8848
+        namespace: e955e195-5d7d-4769-a5db-2e609554c933
+        # 指定前缀，确保订阅自身配置
+        prefix: share-auth
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/share-auth?characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    hikari:
+      connection-test-query: SELECT 1
+      connection-timeout: 60000
+      idle-timeout: 500000
+      max-lifetime: 540000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      pool-name: AuthHikariPool
+  data:
+    redis:
+      host: 192.168.1.11
+      port: 6379
+      password: Spzx@2025!
+      database: 0

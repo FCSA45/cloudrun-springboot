@@ -1,0 +1,3 @@
+com.share.user.api.factory.RemoteLogFallbackFactory
+com.share.system.api.factory.RemoteLogFallbackFactory
+com.share.system.api.factory.RemoteFileFallbackFactory

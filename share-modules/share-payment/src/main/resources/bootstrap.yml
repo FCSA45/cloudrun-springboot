@@ -1,0 +1,41 @@
+# Tomcat
+server:
+  port: 9220
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: share-payment
+  profiles:
+    # 环境配置
+    active: dev
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 192.168.1.11:8848
+        namespace: e955e195-5d7d-4769-a5db-2e609554c933
+      config:
+        # 配置中心地址
+        server-addr: 192.168.1.11:8848
+        namespace: e955e195-5d7d-4769-a5db-2e609554c933
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  # 关键：datasource 要缩进在 spring 节点下，才能被 Spring Boot 识别
+  datasource:
+    dynamic:
+      primary: master
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/share-payment?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+          username: root
+          password: 123456
+          druid:
+            connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;allowPublicKeyRetrieval=true

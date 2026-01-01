@@ -1,0 +1,35 @@
+# Tomcat
+server:
+  port: 9212
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: share-device
+  profiles:
+    # 环境配置
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 192.168.1.11:8848
+        namespace: e955e195-5d7d-4769-a5db-2e609554c933
+      config:
+        # 配置中心地址
+        server-addr: 192.168.1.11:8848
+        namespace: e955e195-5d7d-4769-a5db-2e609554c933
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+
+mybatis-plus:
+    # 搜索指定包别名
+    type-aliases-package: com.share.device.domain
+    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+    mapper-locations: classpath*:mapper/**/*Mapper.xml

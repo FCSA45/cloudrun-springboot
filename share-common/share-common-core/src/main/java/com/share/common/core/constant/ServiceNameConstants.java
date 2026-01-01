@@ -1,0 +1,44 @@
+package com.share.common.core.constant;
+
+/**
+ * 服务名称
+ *
+ * @author share
+ */
+public class ServiceNameConstants
+{
+    /**
+     * 认证服务的serviceid
+     */
+    public static final String AUTH_SERVICE = "share-auth";
+
+    /**
+     * 系统模块的serviceid
+     */
+    public static final String SYSTEM_SERVICE = "share-system";
+
+    /**
+     * 订单模块的serviceid
+     */
+    public static final String ORDER_SERVICE = "share-order";
+
+    /**
+     * 用户模块的serviceid
+     */
+    public static final String SHARE_USER = "share-user";
+
+    /**
+     * 文件服务的serviceid
+     */
+    public static final String FILE_SERVICE = "share-file";
+
+    /**
+     * 用户服务的serviceid
+     */
+    // public static final String SHARE_USER = "share-user";
+
+    /**
+     * 规则服务的serviceid
+     */
+    public static final String RULE_SERVICE = "share-rules";
+}
